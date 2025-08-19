@@ -84,8 +84,7 @@ export default function Page() {
   return (
     <main className="min-h-screen p-4">
       <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">Global Image Finder</h1>
+        <div className="flex justify-end items-center mb-8">
           <Button
             variant="ghost"
             size="icon"
@@ -93,6 +92,17 @@ export default function Page() {
           >
             {theme === "dark" ? <FaSun /> : <FaMoon />}
           </Button>
+        </div>
+
+        {/* Title and Subtitle */}
+        <div className="text-center mb-10">
+          <h1 className="text-5xl font-bold mb-4">
+            Discover Stunning Photos Instantly
+          </h1>
+          <p className="text-lg max-w-xl mx-auto opacity-90">
+            Search and explore millions of high-quality images from Unsplash,
+            Pexels, and Pixabay all in one place.
+          </p>
         </div>
 
         <SearchBar onSearch={handleSearch} isLoading={loading} />

@@ -11,7 +11,7 @@ import SessionProvider from "../components/SessionProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Global Image Finder",
+  title: "Photos",
   description: "Search and discover beautiful images from multiple sources",
 };
 
