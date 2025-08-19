@@ -23,6 +23,9 @@ export default function Page() {
     if (savedFavorites) {
       setFavorites(new Set(JSON.parse(savedFavorites)));
     }
+
+    // Load random/popular images on initial mount
+    handleSearch("nature", undefined); // Default search for nature images
   }, []);
 
   const handleSearch = async (query: string, source?: string) => {
@@ -113,6 +116,7 @@ export default function Page() {
           loadMore={loadMore}
           favorites={favorites}
           onToggleFavorite={handleToggleFavorite}
+          isLoading={loading}
         />
       </div>
     </main>

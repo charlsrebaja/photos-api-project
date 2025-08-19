@@ -51,6 +51,7 @@ export function ImageCard({
               fill
               className="object-contain"
               sizes="(max-width: 1200px) 100vw, 1200px"
+              priority
             />
           </div>
           <div className="flex justify-between items-center mt-4">

@@ -1,5 +1,6 @@
 import { UnifiedImage } from "@/types/api";
 import { ImageCard } from "./ImageCard";
+import { ImageSkeleton } from "./ImageSkeleton";
 import Masonry from "react-masonry-css";
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -9,6 +10,7 @@ interface ImageGridProps {
   loadMore: () => void;
   favorites: Set<string>;
   onToggleFavorite: (image: UnifiedImage) => void;
+  isLoading?: boolean;
 }
 
 export function ImageGrid({
@@ -17,6 +19,7 @@ export function ImageGrid({
   loadMore,
   favorites,
   onToggleFavorite,
+  isLoading = false,
 }: ImageGridProps) {
   const breakpointColumns = {
     default: 3,
@@ -41,15 +44,25 @@ export function ImageGrid({
         className="flex -ml-4 w-auto"
         columnClassName="pl-4 bg-background"
       >
-        {images.map((image, index) => (
-          <div key={`${image.source}-${image.id}-${index}`} className="mb-4">
-            <ImageCard
-              image={image}
-              onToggleFavorite={onToggleFavorite}
-              isFavorite={favorites.has(image.id)}
-            />
-          </div>
-        ))}
+        {isLoading
+          ? // Show 6 skeleton cards while loading
+            Array.from({ length: 6 }).map((_, index) => (
+              <div key={`skeleton-${index}`} className="mb-4">
+                <ImageSkeleton />
+              </div>
+            ))
+          : images.map((image, index) => (
+              <div
+                key={`${image.source}-${image.id}-${index}`}
+                className="mb-4"
+              >
+                <ImageCard
+                  image={image}
+                  onToggleFavorite={onToggleFavorite}
+                  isFavorite={favorites.has(image.id)}
+                />
+              </div>
+            ))}
       </Masonry>
     </InfiniteScroll>
   );
